@@ -1,0 +1,54 @@
+{
+    "extends": "hardcore",
+    "env": {
+        "node": true
+    },
+    "plugins": [
+        "promise",
+        "fp"
+    ],
+    "rules": {
+        "complexity": [
+            "error",
+            5
+        ],
+
+        "promise/param-names": "error",
+        "promise/always-return": "error",
+        "promise/catch-or-return": "error",
+        "promise/no-return-wrap": "error",
+        "promise/no-nesting": "error",
+        "promise/no-promise-in-callback": "error",
+        "promise/avoid-new": "error",
+        "promise/no-callback-in-promise": "error",
+
+        "promise/no-native": "off",
+        "promise/prefer-await-to-then": "off",
+        "promise/prefer-await-to-callbacks": "off",
+
+        "fp/no-arguments": "error",
+        "fp/no-class": "error",
+        "fp/no-delete": "error",
+        "fp/no-events": "error",
+        "fp/no-get-set": "error",
+        "fp/no-let": "error",
+        "fp/no-loops": "error",
+        "fp/no-mutating-assign": "error",
+        "fp/no-mutating-methods": "error",
+        "fp/no-mutation": [
+            "error",
+            {
+                "commonjs": true,
+                "exceptions": []
+            }
+        ],
+        "fp/no-proxy": "error",
+        "fp/no-rest-parameters": "error",
+        "fp/no-this": "error",
+        "fp/no-throw": "error",
+        "fp/no-valueof-field": "error",
+
+        "fp/no-nil": "off",
+        "fp/no-unused-expression": "off"
+    }
+}

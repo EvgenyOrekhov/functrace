@@ -1,0 +1,124 @@
+{
+    "jslint": {
+        "files": [
+            "**/*.js",
+            "**/*.json",
+            "**/.*.json",
+            "**/*.yaml",
+            "**/.*.yaml",
+            "**/*.yml",
+            "**/.*.yml"
+        ],
+        "ignore": [
+            "node_modules/**",
+            "coverage/**",
+            "**/*.min.js"
+        ],
+        "rcFile": ".jslintrc"
+    },
+    "eslint": {
+        "files": [
+            "**/*.js"
+        ],
+        "ignore": [
+            "node_modules/**",
+            "coverage/**",
+            "**/*.min.js"
+        ],
+        "rcFile": ".eslintrc.json"
+    },
+    "csslint": {
+        "files": [
+            "**/*.css"
+        ],
+        "ignore": [
+            "node_modules/**",
+            "coverage/**",
+            "**/*.min.css"
+        ],
+        "rcFile": ".csslintrc"
+    },
+    "stylelint": {
+        "files": [
+            "**/*.css",
+            "**/*.scss",
+            "**/*.less",
+            "**/*.sss"
+        ],
+        "ignore": [
+            "node_modules/**",
+            "coverage/**",
+            "**/*.min.css"
+        ],
+        "rcFile": ".stylelintrc"
+    },
+    "htmlhint": {
+        "files": [
+            "**/*.html",
+            "**/*.htm"
+        ],
+        "ignore": [
+            "node_modules/**",
+            "coverage/**"
+        ],
+        "rcFile": ".htmlhintrc"
+    },
+    "w3cjs": {
+        "files": [
+            "**/*.html",
+            "**/*.htm"
+        ],
+        "ignore": [
+            "node_modules/**",
+            "coverage/**"
+        ],
+        "rcFile": null
+    },
+    "bootlint": {
+        "files": [
+            "**/*.html",
+            "**/*.htm"
+        ],
+        "ignore": [
+            "node_modules/**",
+            "coverage/**"
+        ],
+        "rcFile": ".bootlintrc.json"
+    },
+    "markdownlint": {
+        "files": [
+            "**/*.markdown",
+            "**/*.mdown",
+            "**/*.mkdn",
+            "**/*.md",
+            "**/*.mkd",
+            "**/*.mdwn",
+            "**/*.mdtxt",
+            "**/*.mdtext",
+            "**/*.rmd"
+        ],
+        "ignore": [
+            "node_modules/**",
+            "coverage/**"
+        ],
+        "rcFile": ".markdownlint.json"
+    },
+    "remark-lint": {
+        "files": [
+            "**/*.markdown",
+            "**/*.mdown",
+            "**/*.mkdn",
+            "**/*.md",
+            "**/*.mkd",
+            "**/*.mdwn",
+            "**/*.mdtxt",
+            "**/*.mdtext",
+            "**/*.rmd"
+        ],
+        "ignore": [
+            "node_modules/**",
+            "coverage/**"
+        ],
+        "rcFile": ".remarkrc"
+    }
+}

@@ -11,6 +11,7 @@
     "test": "npm run coverage",
     "mocha": "mocha"
   },
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://"
@@ -26,7 +27,9 @@
   "files": [
     "src/"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "pretty-hrtime": "^1.0.3"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",

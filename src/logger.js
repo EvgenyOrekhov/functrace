@@ -3,12 +3,10 @@
 
 "use strict";
 
-const prettyHrtime = require("pretty-hrtime");
-
 function getDuration(start) {
     const end = process.hrtime(start);
 
-    return prettyHrtime(end);
+    return end;
 }
 
 module.exports = function makeLogger(callback) {

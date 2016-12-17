@@ -1,5 +1,6 @@
 /*jslint node, es6, maxlen: 80 */
-/*eslint func-names: "off" */
+/*eslint func-names: "off", no-magic-numbers: "off" */
+
 
 "use strict";
 
@@ -16,8 +17,6 @@ const expect = chai.expect;
 
 chai.use(chaiAsPromised);
 chai.use(chaiSpies);
-
-const once = 1;
 
 const error = new Error("error message");
 
@@ -63,7 +62,7 @@ describe("logger", function () {
 
             wrapped();
 
-            return expect(callback).to.have.been.called.exactly(once);
+            return expect(callback).to.have.been.called.exactly(1);
         }
     );
 
@@ -78,7 +77,7 @@ describe("logger", function () {
 
             wrapped("test");
 
-            return expect(callback).to.have.been.called.exactly(once);
+            return expect(callback).to.have.been.called.exactly(1);
         }
     );
 
@@ -93,7 +92,7 @@ describe("logger", function () {
 
             wrapped("test");
 
-            return expect(callback).to.have.been.called.exactly(once);
+            return expect(callback).to.have.been.called.exactly(1);
         }
     );
 
@@ -108,7 +107,7 @@ describe("logger", function () {
 
             wrapped();
 
-            return expect(callback).to.have.been.called.exactly(once);
+            return expect(callback).to.have.been.called.exactly(1);
         }
     );
 
@@ -125,8 +124,28 @@ describe("logger", function () {
                 wrapped();
             } catch (caughtError) {
                 expect(caughtError).to.eql(error);
-                expect(callback).to.have.been.called.exactly(once);
+                expect(callback).to.have.been.called.exactly(1);
             }
+        }
+    );
+
+    it(
+        "should report the call count of the passed in function",
+        function () {
+            // eslint-disable-next-line fp/no-let
+            let callCount = 0;
+            const callback = chai.spy(function (result) {
+                // eslint-disable-next-line fp/no-mutation
+                callCount += 1;
+                expect(result.callCount).to.eql(callCount);
+            });
+            const log = makeLogger(callback);
+            const wrapped = log(original);
+
+            wrapped();
+            wrapped();
+
+            return expect(callback).to.have.been.called.exactly(2);
         }
     );
 
@@ -154,7 +173,7 @@ describe("logger", function () {
                 const wrapped = log(originalAsync);
 
                 return wrapped(timeout).then(
-                    () => expect(callback).to.have.been.called.exactly(once)
+                    () => expect(callback).to.have.been.called.exactly(1)
                 );
             }
         );
@@ -170,7 +189,7 @@ describe("logger", function () {
                 const wrapped = log(originalAsyncReject);
 
                 return wrapped().catch(
-                    () => expect(callback).to.have.been.called.exactly(once)
+                    () => expect(callback).to.have.been.called.exactly(1)
                 );
             }
         );
@@ -189,7 +208,7 @@ describe("logger", function () {
                 const wrapped = log(originalAsync);
 
                 return wrapped(timeout).then(
-                    () => expect(callback).to.have.been.called.exactly(once)
+                    () => expect(callback).to.have.been.called.exactly(1)
                 );
             }
         );

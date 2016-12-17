@@ -13,6 +13,9 @@ function getDuration(start) {
 
 module.exports = function makeLogger(callback) {
     return function log(original) {
+        // eslint-disable-next-line fp/no-let
+        let callCount = 0;
+
         // eslint-disable-next-line fp/no-rest-parameters
         return function callTheCallbackAndTheOriginal(...args) {
             const partialInfo = {
@@ -32,7 +35,8 @@ module.exports = function makeLogger(callback) {
                         function callTheCallback(fulfillmentValue) {
                             const info = Object.assign({}, partialInfo, {
                                 fulfillmentValue,
-                                duration: getDuration(start)
+                                duration: getDuration(start),
+                                callCount
                             });
 
                             callback(info);
@@ -40,7 +44,8 @@ module.exports = function makeLogger(callback) {
                         function callTheCallback(error) {
                             const info = Object.assign({}, partialInfo, {
                                 error,
-                                duration: getDuration(start)
+                                duration: getDuration(start),
+                                callCount
                             });
 
                             callback(info);
@@ -52,7 +57,8 @@ module.exports = function makeLogger(callback) {
 
                 const info = Object.assign({}, partialInfo, {
                     returnValue,
-                    duration
+                    duration,
+                    callCount
                 });
 
                 callback(info);
@@ -63,7 +69,8 @@ module.exports = function makeLogger(callback) {
             function handleError(error, duration) {
                 const info = Object.assign({}, partialInfo, {
                     error,
-                    duration
+                    duration,
+                    callCount
                 });
 
                 // eslint-disable-next-line callback-return
@@ -72,6 +79,9 @@ module.exports = function makeLogger(callback) {
                 // eslint-disable-next-line fp/no-throw
                 throw error;
             }
+
+            // eslint-disable-next-line fp/no-mutation, no-magic-numbers
+            callCount += 1;
 
             try {
                 return handleReturnValue(

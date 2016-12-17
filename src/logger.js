@@ -20,45 +20,70 @@ module.exports = function makeLogger(callback) {
                 args
             };
             const start = process.hrtime();
-            const returnValue = original(...args);
-            const duration = getDuration(start);
 
-            if (
-                returnValue !== undefined
-                && typeof returnValue.then === "function"
-            ) {
-                // eslint-disable-next-line promise/catch-or-return
-                returnValue.then(
-                    // eslint-disable-next-line promise/always-return
-                    function callTheCallback(fulfillmentValue) {
-                        const info = Object.assign({}, partialInfo, {
-                            fulfillmentValue,
-                            duration: getDuration(start)
-                        });
+            function handleReturnValue(returnValue, duration) {
+                if (
+                    returnValue !== undefined
+                    && typeof returnValue.then === "function"
+                ) {
+                    // eslint-disable-next-line promise/catch-or-return
+                    returnValue.then(
+                        // eslint-disable-next-line promise/always-return
+                        function callTheCallback(fulfillmentValue) {
+                            const info = Object.assign({}, partialInfo, {
+                                fulfillmentValue,
+                                duration: getDuration(start)
+                            });
 
-                        callback(info);
-                    },
-                    function callTheCallback(error) {
-                        const info = Object.assign({}, partialInfo, {
-                            error,
-                            duration: getDuration(start)
-                        });
+                            callback(info);
+                        },
+                        function callTheCallback(error) {
+                            const info = Object.assign({}, partialInfo, {
+                                error,
+                                duration: getDuration(start)
+                            });
 
-                        callback(info);
-                    }
-                );
+                            callback(info);
+                        }
+                    );
+
+                    return returnValue;
+                }
+
+                const info = Object.assign({}, partialInfo, {
+                    returnValue,
+                    duration
+                });
+
+                callback(info);
 
                 return returnValue;
             }
 
-            const info = Object.assign({}, partialInfo, {
-                returnValue,
-                duration
-            });
+            function handleError(error, duration) {
+                const info = Object.assign({}, partialInfo, {
+                    error,
+                    duration
+                });
 
-            callback(info);
+                // eslint-disable-next-line callback-return
+                callback(info);
 
-            return returnValue;
+                // eslint-disable-next-line fp/no-throw
+                throw error;
+            }
+
+            try {
+                return handleReturnValue(
+                    original(...args),
+                    getDuration(start)
+                );
+            } catch (error) {
+                handleError(
+                    error,
+                    getDuration(start)
+                );
+            }
         };
     };
 };

@@ -19,8 +19,15 @@ chai.use(chaiSpies);
 
 const once = 1;
 
+const error = new Error("error message");
+
 function original(arg) {
     return arg;
+}
+
+function originalThrow() {
+    // eslint-disable-next-line fp/no-throw
+    throw error;
 }
 
 function originalAsync(timeout) {
@@ -29,8 +36,6 @@ function originalAsync(timeout) {
         setTimeout(() => resolve(timeout), timeout);
     });
 }
-
-const error = new Error("error message");
 
 function originalAsyncReject() {
     return Promise.reject(error);
@@ -104,6 +109,24 @@ describe("logger", function () {
             wrapped();
 
             return expect(callback).to.have.been.called.exactly(once);
+        }
+    );
+
+    it(
+        "should report errors of the passed in function",
+        function () {
+            const callback = chai.spy(
+                (result) => expect(result.error).to.eql(error)
+            );
+            const log = makeLogger(callback);
+            const wrapped = log(originalThrow);
+
+            try {
+                wrapped();
+            } catch (caughtError) {
+                expect(caughtError).to.eql(error);
+                expect(callback).to.have.been.called.exactly(once);
+            }
         }
     );
 

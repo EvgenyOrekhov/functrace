@@ -197,17 +197,20 @@ describe("logger", function () {
         it(
             "should work with functions that return promises and report their "
                     + "names, args and durations",
-            function () {
+            function (done) {
                 const timeout = 10;
                 const callback = chai.spy(function (result) {
                     expect(result.name).to.eql(originalAsync.name);
                     expect(result.args).to.eql([timeout]);
                     expect(result.duration).to.match(/1\d\sms/);
+
+                    done();
                 });
                 const log = makeLogger(callback);
                 const wrapped = log(originalAsync);
 
-                return wrapped(timeout).then(
+                // eslint-disable-next-line promise/catch-or-return
+                wrapped(timeout).then(
                     () => expect(callback).to.have.been.called.exactly(1)
                 );
             }

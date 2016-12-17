@@ -2,6 +2,14 @@
 
 "use strict";
 
+const prettyHrtime = require("pretty-hrtime");
+
+function getDuration(start) {
+    const end = process.hrtime(start);
+
+    return prettyHrtime(end);
+}
+
 module.exports = function makeLogger(callback) {
     return function log(original) {
         // eslint-disable-next-line fp/no-let
@@ -33,11 +41,11 @@ module.exports = function makeLogger(callback) {
                     returnValue.then(
                         (fulfillmentValue) => callTheCallback({
                             fulfillmentValue,
-                            duration: process.hrtime(start)
+                            duration: getDuration(start)
                         }),
                         (error) => callTheCallback({
                             error,
-                            duration: process.hrtime(start)
+                            duration: getDuration(start)
                         })
                     );
 
@@ -68,12 +76,12 @@ module.exports = function makeLogger(callback) {
             try {
                 return handleReturnValue(
                     original(...args),
-                    process.hrtime(start)
+                    getDuration(start)
                 );
             } catch (error) {
                 handleError(
                     error,
-                    process.hrtime(start)
+                    getDuration(start)
                 );
             }
         };

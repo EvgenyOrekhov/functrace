@@ -9,8 +9,6 @@ const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 const chaiSpies = require("chai-spies");
 
-const prettyHrtime = require("pretty-hrtime");
-
 const makeLogger = require("../src/logger");
 
 const describe = mocha.describe;
@@ -101,11 +99,9 @@ describe("logger", function () {
     it(
         "should report the duration of the call of the passed in function",
         function () {
-            const callback = chai.spy(function (result) {
-                const prettyDuration = prettyHrtime(result.duration);
-
-                expect(prettyDuration).to.include("s");
-            });
+            const callback = chai.spy(
+                (result) => expect(result.duration).to.include("s")
+            );
             const log = makeLogger(callback);
             const wrapped = log(original);
 
@@ -206,10 +202,7 @@ describe("logger", function () {
                 const callback = chai.spy(function (result) {
                     expect(result.name).to.eql(originalAsync.name);
                     expect(result.args).to.eql([timeout]);
-
-                    const prettyDuration = prettyHrtime(result.duration);
-
-                    expect(prettyDuration).to.match(/1\d\sms/);
+                    expect(result.duration).to.match(/1\d\sms/);
                 });
                 const log = makeLogger(callback);
                 const wrapped = log(originalAsync);

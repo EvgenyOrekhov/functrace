@@ -1,3 +1,4 @@
 --recursive
 --colors
 --check-leaks
+--throw-deprecation

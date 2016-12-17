@@ -1,13 +1,6 @@
 /*jslint node, es6, maxlen: 80 */
-/*eslint promise/no-callback-in-promise: "off" */
 
 "use strict";
-
-function getDuration(start) {
-    const end = process.hrtime(start);
-
-    return end;
-}
 
 module.exports = function makeLogger(callback) {
     return function log(original) {
@@ -16,11 +9,20 @@ module.exports = function makeLogger(callback) {
 
         // eslint-disable-next-line fp/no-rest-parameters
         return function callTheCallbackAndTheOriginal(...args) {
-            const partialInfo = {
-                name: original.name,
-                args
-            };
             const start = process.hrtime();
+
+            function callTheCallback(info) {
+                const allInfo = Object.assign(
+                    {
+                        name: original.name,
+                        args,
+                        callCount
+                    },
+                    info
+                );
+
+                callback(allInfo);
+            }
 
             function handleReturnValue(returnValue, duration) {
                 if (
@@ -29,50 +31,32 @@ module.exports = function makeLogger(callback) {
                 ) {
                     // eslint-disable-next-line promise/catch-or-return
                     returnValue.then(
-                        // eslint-disable-next-line promise/always-return
-                        function callTheCallback(fulfillmentValue) {
-                            const info = Object.assign({}, partialInfo, {
-                                fulfillmentValue,
-                                duration: getDuration(start),
-                                callCount
-                            });
-
-                            callback(info);
-                        },
-                        function callTheCallback(error) {
-                            const info = Object.assign({}, partialInfo, {
-                                error,
-                                duration: getDuration(start),
-                                callCount
-                            });
-
-                            callback(info);
-                        }
+                        (fulfillmentValue) => callTheCallback({
+                            fulfillmentValue,
+                            duration: process.hrtime(start)
+                        }),
+                        (error) => callTheCallback({
+                            error,
+                            duration: process.hrtime(start)
+                        })
                     );
 
                     return returnValue;
                 }
 
-                const info = Object.assign({}, partialInfo, {
+                callTheCallback({
                     returnValue,
-                    duration,
-                    callCount
+                    duration
                 });
-
-                callback(info);
 
                 return returnValue;
             }
 
             function handleError(error, duration) {
-                const info = Object.assign({}, partialInfo, {
+                callTheCallback({
                     error,
-                    duration,
-                    callCount
+                    duration
                 });
-
-                // eslint-disable-next-line callback-return
-                callback(info);
 
                 // eslint-disable-next-line fp/no-throw
                 throw error;
@@ -84,12 +68,12 @@ module.exports = function makeLogger(callback) {
             try {
                 return handleReturnValue(
                     original(...args),
-                    getDuration(start)
+                    process.hrtime(start)
                 );
             } catch (error) {
                 handleError(
                     error,
-                    getDuration(start)
+                    process.hrtime(start)
                 );
             }
         };

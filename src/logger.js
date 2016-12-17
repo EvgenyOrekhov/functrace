@@ -10,7 +10,8 @@ function getDuration(start) {
     return prettyHrtime(end);
 }
 
-module.exports = function makeLogger(callback) {
+// eslint-disable-next-line no-console
+module.exports = function makeLogger(callback = console.log) {
     return function log(original) {
         // eslint-disable-next-line fp/no-let
         let callCount = 0;

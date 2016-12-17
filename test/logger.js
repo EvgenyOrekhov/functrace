@@ -149,6 +149,28 @@ describe("logger", function () {
         }
     );
 
+    /* eslint-disable no-console, fp/no-mutation */
+
+    it(
+        "should use console.log if the callback is not provided",
+        function () {
+            const originalConsoleLog = console.log;
+
+            console.log = chai.spy();
+
+            const log = makeLogger();
+            const wrapped = log(original);
+
+            wrapped();
+
+            expect(console.log).to.have.been.called.exactly(1);
+
+            console.log = originalConsoleLog;
+        }
+    );
+
+    /* eslint-enable no-console, fp/no-mutation */
+
     describe("promises", function () {
         it(
             "should wrap functions that return promises",

@@ -8,7 +8,7 @@ const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 const chaiSpies = require("chai-spies");
 
-const makeLogger = require("../src/logger");
+const makeTracer = require("../src/tracer");
 
 const describe = mocha.describe;
 const it = mocha.it;
@@ -39,12 +39,12 @@ function originalAsyncReject() {
     return Promise.reject(error);
 }
 
-describe("logger", function () {
+describe("tracer", function () {
     it(
         "should wrap the passed in function",
         function () {
-            const log = makeLogger(original);
-            const wrapped = log(original);
+            const trace = makeTracer(original);
+            const wrapped = trace(original);
 
             return expect(wrapped("test")).to.eql(original("test"));
         }
@@ -56,8 +56,8 @@ describe("logger", function () {
             const callback = chai.spy(
                 (result) => expect(result.name).to.eql(original.name)
             );
-            const log = makeLogger(callback);
-            const wrapped = log(original);
+            const trace = makeTracer(callback);
+            const wrapped = trace(original);
 
             wrapped();
 
@@ -71,8 +71,8 @@ describe("logger", function () {
             const callback = chai.spy(
                 (result) => expect(result.args).to.eql(["test"])
             );
-            const log = makeLogger(callback);
-            const wrapped = log(original);
+            const trace = makeTracer(callback);
+            const wrapped = trace(original);
 
             wrapped("test");
 
@@ -86,8 +86,8 @@ describe("logger", function () {
             const callback = chai.spy(
                 (result) => expect(result.returnValue).to.eql("test")
             );
-            const log = makeLogger(callback);
-            const wrapped = log(original);
+            const trace = makeTracer(callback);
+            const wrapped = trace(original);
 
             wrapped("test");
 
@@ -101,8 +101,8 @@ describe("logger", function () {
             const callback = chai.spy(
                 (result) => expect(result.duration).to.include("s")
             );
-            const log = makeLogger(callback);
-            const wrapped = log(original);
+            const trace = makeTracer(callback);
+            const wrapped = trace(original);
 
             wrapped();
 
@@ -116,8 +116,8 @@ describe("logger", function () {
             const callback = chai.spy(
                 (result) => expect(result.error).to.eql(error)
             );
-            const log = makeLogger(callback);
-            const wrapped = log(originalThrow);
+            const trace = makeTracer(callback);
+            const wrapped = trace(originalThrow);
 
             try {
                 wrapped();
@@ -138,8 +138,8 @@ describe("logger", function () {
                 callCount += 1;
                 expect(result.callCount).to.eql(callCount);
             });
-            const log = makeLogger(callback);
-            const wrapped = log(original);
+            const trace = makeTracer(callback);
+            const wrapped = trace(original);
 
             wrapped();
             wrapped();
@@ -157,8 +157,8 @@ describe("logger", function () {
 
             console.log = chai.spy();
 
-            const log = makeLogger();
-            const wrapped = log(original);
+            const trace = makeTracer();
+            const wrapped = trace(original);
 
             wrapped();
 
@@ -175,8 +175,8 @@ describe("logger", function () {
             "should wrap functions that return promises",
             function () {
                 const timeout = 0;
-                const log = makeLogger(original);
-                const wrapped = log(originalAsync);
+                const trace = makeTracer(original);
+                const wrapped = trace(originalAsync);
 
                 return expect(wrapped(timeout)).to.eventually.eql(timeout);
             }
@@ -190,8 +190,8 @@ describe("logger", function () {
                 const callback = chai.spy(
                     (result) => expect(result.fulfillmentValue).to.eql(timeout)
                 );
-                const log = makeLogger(callback);
-                const wrapped = log(originalAsync);
+                const trace = makeTracer(callback);
+                const wrapped = trace(originalAsync);
 
                 return wrapped(timeout).then(
                     () => expect(callback).to.have.been.called.exactly(1)
@@ -206,8 +206,8 @@ describe("logger", function () {
                 const callback = chai.spy(
                     (result) => expect(result.error).to.eql(error)
                 );
-                const log = makeLogger(callback);
-                const wrapped = log(originalAsyncReject);
+                const trace = makeTracer(callback);
+                const wrapped = trace(originalAsyncReject);
 
                 return wrapped().catch(
                     () => expect(callback).to.have.been.called.exactly(1)
@@ -227,8 +227,8 @@ describe("logger", function () {
 
                     done();
                 });
-                const log = makeLogger(callback);
-                const wrapped = log(originalAsync);
+                const trace = makeTracer(callback);
+                const wrapped = trace(originalAsync);
 
                 // eslint-disable-next-line promise/catch-or-return
                 wrapped(timeout).then(

@@ -11,8 +11,8 @@ function getDuration(start) {
 }
 
 // eslint-disable-next-line no-console
-module.exports = function makeLogger(callback = console.log) {
-    return function log(original) {
+module.exports = function makeTracer(callback = console.log) {
+    return function trace(original) {
         // eslint-disable-next-line fp/no-let
         let callCount = 0;
 

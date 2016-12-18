@@ -1,8 +1,12 @@
 {
-  "name": "",
+  "name": "functrace",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "Function call tracer",
+  "keywords": [
+    "trace",
+    "tracer",
+    "spy"
+  ],
   "license": "MIT",
   "scripts": {
     "lint": "lints",
@@ -14,16 +18,16 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://"
+    "url": "git+https://github.com/EvgenyOrekhov/functrace.git"
   },
   "author": {
     "name": "Evgeny Orekhov",
     "url": "https://plus.google.com/+ЕвгенийОрехов"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/EvgenyOrekhov/functrace/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/EvgenyOrekhov/functrace#readme",
   "files": [
     "src/"
   ],

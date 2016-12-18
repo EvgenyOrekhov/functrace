@@ -1,7 +1,6 @@
 /*jslint node, es6, maxlen: 80 */
 /*eslint func-names: "off", no-magic-numbers: "off" */
 
-
 "use strict";
 
 const mocha = require("mocha");

@@ -1,5 +1,8 @@
 # functrace
 
+[![Travis CI build status](https://img.shields.io/travis/EvgenyOrekhov/functrace/master.svg?style=flat-square)](https://travis-ci.org/EvgenyOrekhov/functrace)
+[![Codacy grade](https://img.shields.io/codacy/grade/2bdd57c66a014adf89148f7f83bb3b51/master.svg?style=flat-square)](https://www.codacy.com/app/EvgenyOrekhov/functrace)
+
 ## Function call tracer
 
 ## Install

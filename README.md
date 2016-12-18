@@ -1,5 +1,8 @@
 # functrace
 
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2bdd57c66a014adf89148f7f83bb3b51)](https://www.codacy.com/app/EvgenyOrekhov/functrace?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=EvgenyOrekhov/functrace&amp;utm_campaign=badger)
+
 ## Function call tracer
 
 ## Install

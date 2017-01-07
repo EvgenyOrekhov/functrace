@@ -49,6 +49,11 @@
         "fp/no-valueof-field": "error",
 
         "fp/no-nil": "off",
-        "fp/no-unused-expression": "off"
+        "fp/no-unused-expression": [
+            "off",
+            {
+                "allowUseStrict": true
+            }
+        ]
     }
 }

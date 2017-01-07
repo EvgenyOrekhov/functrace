@@ -10,9 +10,8 @@ const chaiSpies = require("chai-spies");
 
 const makeTracer = require("../src/tracer");
 
-const describe = mocha.describe;
-const it = mocha.it;
-const expect = chai.expect;
+const {describe, it} = mocha;
+const {expect} = chai;
 
 chai.use(chaiAsPromised);
 chai.use(chaiSpies);

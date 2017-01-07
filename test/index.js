@@ -9,9 +9,8 @@ const chai = require("chai");
 const functrace = require("../src");
 const makeTracer = require("../src/tracer");
 
-const describe = mocha.describe;
-const it = mocha.it;
-const expect = chai.expect;
+const {describe, it} = mocha;
+const {expect} = chai;
 
 describe("functrace", function () {
     it(

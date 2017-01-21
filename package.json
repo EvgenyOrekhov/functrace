@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "lints",
     "pretest": "npm run lint",
-    "coverage": "istanbul cover --include-all-sources _mocha",
+    "coverage": "nyc --all --include=src --reporter=text --reporter=text-summary --reporter=html mocha",
     "test": "npm run coverage",
     "mocha": "mocha"
   },
@@ -41,8 +41,8 @@
     "eslint-config-hardcore": "^1.8.0",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-promise": "^3.4.0",
-    "istanbul": "^0.4.5",
     "lints": "^10.0.1",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "nyc": "^10.1.2"
   }
 }

@@ -169,6 +169,33 @@ describe("tracer", function () {
 
     /* eslint-enable no-console, fp/no-mutation */
 
+    it(
+        "should preserve the arity of the passed in function",
+        function () {
+            function nullary() {
+                return undefined;
+            }
+
+            function unary(arg) {
+                return arg;
+            }
+
+            function binary(arg1, arg2) {
+                return [arg1, arg2];
+            }
+
+            const trace = makeTracer(original);
+
+            const wrappedNullary = trace(nullary);
+            const wrappedUnary = trace(unary);
+            const wrappedBinary = trace(binary);
+
+            expect(wrappedNullary.length).to.eql(nullary.length);
+            expect(wrappedUnary.length).to.eql(unary.length);
+            expect(wrappedBinary.length).to.eql(binary.length);
+        }
+    );
+
     describe("promises", function () {
         it(
             "should wrap functions that return promises",

@@ -17,7 +17,7 @@ module.exports = function makeTracer(callback = console.log) {
         let callCount = 0;
 
         // eslint-disable-next-line fp/no-rest-parameters
-        return function callTheCallbackAndTheOriginal(...args) {
+        function callTheCallbackAndTheOriginal(...args) {
             const start = process.hrtime();
 
             function callTheCallback(info) {
@@ -85,6 +85,15 @@ module.exports = function makeTracer(callback = console.log) {
                     getDuration(start)
                 );
             }
-        };
+        }
+
+        // eslint-disable-next-line fp/no-mutating-methods
+        Object.defineProperty(
+            callTheCallbackAndTheOriginal,
+            "length",
+            {value: original.length}
+        );
+
+        return callTheCallbackAndTheOriginal;
     };
 };

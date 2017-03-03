@@ -41,7 +41,7 @@
     "eslint-config-hardcore": "^1.9.0",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-promise": "^3.5.0",
-    "lints": "^10.1.1",
+    "lints": "^11.0.0",
     "mocha": "^3.2.0",
     "nyc": "^10.1.2"
   }

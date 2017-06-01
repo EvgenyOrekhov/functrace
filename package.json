@@ -1,47 +1,47 @@
 {
-  "name": "functrace",
-  "version": "1.0.1",
-  "description": "Function call tracer",
-  "keywords": [
-    "trace",
-    "tracer",
-    "spy"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "lint": "lints",
-    "pretest": "npm run lint",
-    "coverage": "nyc --all --include=src --reporter=text --reporter=text-summary --reporter=html mocha",
-    "test": "npm run coverage",
-    "mocha": "mocha"
-  },
-  "main": "src/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EvgenyOrekhov/functrace.git"
-  },
-  "author": {
-    "name": "Evgeny Orekhov",
-    "url": "https://plus.google.com/+ЕвгенийОрехов"
-  },
-  "bugs": {
-    "url": "https://github.com/EvgenyOrekhov/functrace/issues"
-  },
-  "homepage": "https://github.com/EvgenyOrekhov/functrace#readme",
-  "files": [
-    "src/"
-  ],
-  "dependencies": {
-    "pretty-hrtime": "^1.0.3"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "chai-spies": "^0.7.1",
-    "eslint-config-hardcore-fp": "^1.1.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "lints": "^11.1.0",
-    "mocha": "^3.3.0",
-    "nyc": "^10.3.2"
-  }
+    "name": "functrace",
+    "version": "1.0.1",
+    "description": "Function call tracer",
+    "keywords": [
+        "trace",
+        "tracer",
+        "spy"
+    ],
+    "license": "MIT",
+    "scripts": {
+        "lint": "lints",
+        "pretest": "npm run lint",
+        "coverage": "nyc --all --include=src --reporter=text --reporter=text-summary --reporter=html mocha",
+        "test": "npm run coverage",
+        "mocha": "mocha"
+    },
+    "main": "src/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/EvgenyOrekhov/functrace.git"
+    },
+    "author": {
+        "name": "Evgeny Orekhov",
+        "url": "https://plus.google.com/+ЕвгенийОрехов"
+    },
+    "bugs": {
+        "url": "https://github.com/EvgenyOrekhov/functrace/issues"
+    },
+    "homepage": "https://github.com/EvgenyOrekhov/functrace#readme",
+    "files": [
+        "src/"
+    ],
+    "dependencies": {
+        "pretty-hrtime": "^1.0.3"
+    },
+    "devDependencies": {
+        "chai": "^3.5.0",
+        "chai-as-promised": "^6.0.0",
+        "chai-spies": "^0.7.1",
+        "eslint-config-hardcore-fp": "^1.1.0",
+        "eslint-plugin-promise": "^3.5.0",
+        "lints": "^11.1.0",
+        "mocha": "^3.3.0",
+        "nyc": "^10.3.2"
+    }
 }

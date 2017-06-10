@@ -40,8 +40,8 @@
         "chai-spies": "^0.7.1",
         "eslint-config-hardcore-fp": "^1.1.0",
         "eslint-plugin-promise": "^3.5.0",
-        "lints": "^11.1.0",
+        "lints": "^11.2.0",
         "mocha": "^3.4.2",
-        "nyc": "^11.0.1"
+        "nyc": "^11.0.2"
     }
 }

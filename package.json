@@ -35,12 +35,12 @@
         "pretty-hrtime": "^1.0.3"
     },
     "devDependencies": {
-        "chai": "^4.1.0",
+        "chai": "^4.1.1",
         "chai-as-promised": "^7.1.1",
         "chai-spies": "^0.7.1",
-        "eslint-config-hardcore-fp": "^2.1.0",
-        "lints": "^12.0.1",
-        "mocha": "^3.4.2",
-        "nyc": "^11.0.3"
+        "eslint-config-hardcore-fp": "^3.0.0",
+        "lints": "^14.0.0",
+        "mocha": "^3.5.0",
+        "nyc": "^11.1.0"
     }
 }

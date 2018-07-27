@@ -132,6 +132,7 @@ describe("tracer", function () {
         function () {
             // eslint-disable-next-line fp/no-let
             let callCount = 0;
+
             const callback = chai.spy(function (result) {
                 // eslint-disable-next-line fp/no-mutation
                 callCount += 1;

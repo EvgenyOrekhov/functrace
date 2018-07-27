@@ -1,6 +1,8 @@
 {
     "global": {
         "ignore": [
+            ".git/**",
+
             "node_modules/**",
             "bower_components/**",
             "jspm_packages/**",
@@ -11,8 +13,7 @@
             "coverage/**",
             ".nyc_output/**",
 
-            "**/*.min.js",
-            "**/*.min.css"
+            "**/*.min.*"
         ]
     },
 
@@ -20,11 +21,8 @@
         "files": [
             "**/*.js",
             "**/*.json",
-            "**/.*.json",
             "**/*.yaml",
-            "**/.*.yaml",
-            "**/*.yml",
-            "**/.*.yml"
+            "**/*.yml"
         ],
         "ignore": [],
         "rcFile": ".jslintrc"

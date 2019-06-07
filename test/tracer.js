@@ -1,4 +1,4 @@
-/*jslint node, maxlen: 80 */
+/*jslint node */
 /*eslint func-names: "off", no-magic-numbers: "off" */
 
 "use strict";
@@ -210,8 +210,10 @@ describe("tracer", function () {
         );
 
         it(
-            "should work with functions that return promises and report their "
-                    + "fulfillment values",
+            (
+                "should work with functions that return promises and report "
+                + "their fulfillment values"
+            ),
             function () {
                 const timeout = 0;
                 const callback = chai.spy(
@@ -227,8 +229,10 @@ describe("tracer", function () {
         );
 
         it(
-            "should work with functions that return promises and report their "
-                    + "errors",
+            (
+                "should work with functions that return promises and report "
+                + "their errors"
+            ),
             function () {
                 const callback = chai.spy(
                     (result) => expect(result.error).to.eql(error)
@@ -243,14 +247,16 @@ describe("tracer", function () {
         );
 
         it(
-            "should work with functions that return promises and report their "
-                    + "names, args and durations",
+            (
+                "should work with functions that return promises and report "
+                + "their names, args and durations"
+            ),
             function (done) {
                 const timeout = 10;
                 const callback = chai.spy(function (result) {
                     expect(result.name).to.eql(originalAsync.name);
                     expect(result.args).to.eql([timeout]);
-                    expect(result.duration).to.match(/1\d\sms/);
+                    expect(result.duration).to.match(/1\d\sms/u);
 
                     done();
                 });

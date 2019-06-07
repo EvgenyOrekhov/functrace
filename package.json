@@ -1,6 +1,6 @@
 {
     "name": "functrace",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Function call tracer",
     "keywords": [
         "trace",
@@ -35,12 +35,12 @@
         "pretty-hrtime": "^1.0.3"
     },
     "devDependencies": {
-        "chai": "^4.1.2",
+        "chai": "^4.2.0",
         "chai-as-promised": "^7.1.1",
         "chai-spies": "^1.0.0",
-        "eslint-config-hardcore-fp": "^4.0.1",
-        "lints": "^17.0.0",
-        "mocha": "^5.2.0",
-        "nyc": "^12.0.2"
+        "eslint-config-hardcore-fp": "^5.3.0",
+        "lints": "^17.1.1",
+        "mocha": "^6.1.4",
+        "nyc": "^14.1.1"
     }
 }

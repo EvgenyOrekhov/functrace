@@ -1,5 +1,5 @@
 {
-    "extends": "hardcore-fp",
+    "extends": ["hardcore", "hardcore/fp", "hardcore/node"],
 
     "env": {
         "node": true
@@ -9,6 +9,19 @@
         "complexity": [
             "error",
             5
-        ]
-    }
+        ],
+        "prefer-object-spread": "off"
+    },
+
+    "overrides": [
+        {
+            "files": ["test/**"],
+
+            "rules": {
+                "unicorn/consistent-function-scoping": "off",
+                "func-names": "off",
+                "no-magic-numbers": "off"
+            }
+        }
+    ]
 }

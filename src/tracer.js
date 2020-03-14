@@ -16,7 +16,6 @@ module.exports = function makeTracer(callback = console.log) {
         // eslint-disable-next-line fp/no-let
         let callCount = 0;
 
-        // eslint-disable-next-line fp/no-rest-parameters
         function callTheCallbackAndTheOriginal(...args) {
             const start = process.hrtime();
 
@@ -71,7 +70,7 @@ module.exports = function makeTracer(callback = console.log) {
                 throw error;
             }
 
-            // eslint-disable-next-line fp/no-mutation, no-magic-numbers
+            // eslint-disable-next-line fp/no-mutation
             callCount += 1;
 
             try {

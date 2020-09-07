@@ -1,17 +1,18 @@
-version: 2
-
-updates:
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "monthly"
-    versioning-strategy: "increase"
-    assignees:
-      - "EvgenyOrekhov"
-
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "monthly"
-    assignees:
-      - "EvgenyOrekhov"
+{
+    "version": 2,
+    "updates": [
+        {
+            "package-ecosystem": "npm",
+            "directory": "/",
+            "schedule": {"interval": "monthly"},
+            "versioning-strategy": "increase",
+            "assignees": ["EvgenyOrekhov"]
+        },
+        {
+            "package-ecosystem": "github-actions",
+            "directory": "/",
+            "schedule": {"interval": "monthly"},
+            "assignees": ["EvgenyOrekhov"]
+        }
+    ]
+}

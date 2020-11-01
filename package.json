@@ -38,7 +38,7 @@
         "chai": "^4.2.0",
         "chai-as-promised": "^7.1.1",
         "chai-spies": "^1.0.0",
-        "eslint-config-hardcore": "^10.3.0",
+        "eslint-config-hardcore": "^13.2.0",
         "lints": "^18.2.1",
         "mocha": "^8.2.0",
         "nyc": "^15.1.0"
